@@ -1,18 +1,19 @@
 package Dist::Zilla::Plugin::Meta::Dynamic::Config;
-BEGIN {
-  $Dist::Zilla::Plugin::Meta::Dynamic::Config::VERSION = '0.02';
+{
+  $Dist::Zilla::Plugin::Meta::Dynamic::Config::VERSION = '0.04';
 }
 
-# ABSTRACT: set dynamic_config to true in resultant META files
+# ABSTRACT: set dynamic_config in resultant META files
 
 use Moose;
-with 'Dist::Zilla::Role::MetaProvider';
 
-sub metadata {
-  return {
-    dynamic_config => 1,
-  };
-}
+has dynamic_config => (
+	is => 'ro',
+	isa => 'Bool',
+	default => 1,
+);
+
+with 'Dist::Zilla::Role::Meta::Dynamic::Config';
 
 __PACKAGE__->meta->make_immutable;
 no Moose;
@@ -25,11 +26,11 @@ __END__
 
 =head1 NAME
 
-Dist::Zilla::Plugin::Meta::Dynamic::Config - set dynamic_config to true in resultant META files
+Dist::Zilla::Plugin::Meta::Dynamic::Config - set dynamic_config in resultant META files
 
 =head1 VERSION
 
-version 0.02
+version 0.04
 
 =head1 SYNOPSIS
 
@@ -46,8 +47,6 @@ distribution performs some dynamic configuration as per L<CPAN::Meta::Spec>.
 Normally this would not be required, but if you are providing your own C<Makefile.PL> or L<Build.PL>
 and asking questions, sensing the environment, etc. to generate a list of prereqs then C<dynamic_config>
 should be set to a true value to satisfy the Meta specification.
-
-=for Pod::Coverage   metadata
 
 =head1 SEE ALSO
 

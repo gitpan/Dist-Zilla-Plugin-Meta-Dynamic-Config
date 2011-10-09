@@ -1,9 +1,9 @@
 NAME
-    Dist::Zilla::Plugin::Meta::Dynamic::Config - set dynamic_config to true
-    in resultant META files
+    Dist::Zilla::Plugin::Meta::Dynamic::Config - set dynamic_config in
+    resultant META files
 
 VERSION
-    version 0.02
+    version 0.04
 
 SYNOPSIS
       # In dist.ini
